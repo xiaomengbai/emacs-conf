@@ -21,6 +21,7 @@
                      sr-speedbar function-args company-c-headers
                      dtrt-indent ws-butler smex
                      flx-ido ido-ubiquitous ido
+                     monokai-theme zenburn-theme color-theme-sanityinc-tomorrow
 		     ))
 
 (package-initialize)

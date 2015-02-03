@@ -1,15 +1,35 @@
 (provide 'setup-faces-and-ui)
 
 ;; theme
-(load-theme 'solarized t)
-(set-frame-parameter nil 'background-mode 'dark)
-(enable-theme 'solarized)
-;; (add-hook 'after-make-frame-functions
-;;           (lambda (frame)
-;;             (set-frame-parameter frame
-;;                                  'background-mode
-;;                                  (if (display-graphic-p frame) 'light 'dark))
-;;             (enable-theme 'solarized)))
+;; solarized
+;; Too dark
+;; (load-theme 'solarized t)
+;; (set-frame-parameter nil 'background-mode 'dark)
+;; (enable-theme 'solarized)
+
+;;;; (add-hook 'after-make-frame-functions
+;;;;           (lambda (frame)
+;;;;             (set-frame-parameter frame
+;;;;                                  'background-mode
+;;;;                                  (if (display-graphic-p frame) 'light 'dark))
+;;;;             (enable-theme 'solarized)))
+
+
+;; weird font in org-mode
+;; (load-theme 'monokai t)
+;; (enable-theme 'monokai) 
+
+;; zenburn theme
+;;(load-theme 'zenburn t)
+
+;; sanitynic-tomorrow
+(require 'color-theme-sanityinc-tomorrow)
+
+;; (color-theme-sanityinc-tomorrow-day) ;; worst one
+(color-theme-sanityinc-tomorrow-night)
+;; (color-theme-sanityinc-tomorrow-blue) ;; blue!
+;; (color-theme-sanityinc-tomorrow-bright) ;; not bad
+;; (color-theme-sanityinc-tomorrow-eighties)
 
 
 ;; set face size

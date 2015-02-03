@@ -312,3 +312,10 @@ Position the cursor at it's beginning, according to the current mode."
 ;;
 (require 'ws-butler)
 (add-hook 'c-mode-common-hook 'ws-butler-mode)
+
+
+;;
+;; smart-tab
+;;
+(require 'smart-tab)
+(global-smart-tab-mode)
