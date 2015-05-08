@@ -195,4 +195,5 @@
 (define-key c-mode-map (kbd "M-o")  'fa-show)
 (define-key c++-mode-map (kbd "M-o")  'fa-show)
 
-
+(add-hook 'c-mode-common-hook (lambda ()
+                                (local-set-key (kbd "C-c C-c") 'compile)))

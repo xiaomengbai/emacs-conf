@@ -254,14 +254,14 @@ Position the cursor at it's beginning, according to the current mode."
 ;; package: smartparens-config
 ;;
 ;;
-(require 'smartparens-config)
-(show-smartparens-global-mode +1)
-(smartparens-global-mode 1)
+;; (require 'smartparens-config)
+;; (show-smartparens-global-mode +1)
+;; (smartparens-global-mode 1)
 
-(setq sp-base-key-bindings 'paredit)
-(setq sp-autoskip-closing-pair 'always)
-(setq sp-hybrid-kill-entire-symbol nil)
-(sp-use-paredit-bindings)
+;; (setq sp-base-key-bindings 'paredit)
+;; (setq sp-autoskip-closing-pair 'always)
+;; (setq sp-hybrid-kill-entire-symbol nil)
+;; (sp-use-paredit-bindings)
 
 ;; when you press RET, the curly braces automatically
 ;; add another newline
@@ -319,3 +319,5 @@ Position the cursor at it's beginning, according to the current mode."
 ;;
 (require 'smart-tab)
 (global-smart-tab-mode)
+
+
