@@ -98,4 +98,5 @@
 (global-set-key (kbd "M-n") 'highlight-symbol-next)
 (global-set-key (kbd "M-p") 'highlight-symbol-prev)
 
-
+;; chinese-font
+(set-fontset-font t 'han (font-spec :name "Songti SC"))

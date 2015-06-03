@@ -196,3 +196,5 @@
 (define-key c++-mode-map (kbd "M-o")  'fa-show)
 
 
+(define-key c-mode-map (kbd "C-c C-c") 'compile)
+(define-key c++-mode-map (kbd "C-c C-c") 'compile)

@@ -4,16 +4,17 @@
 ;; how to use this?
 ;;
 ;; ispell is built-in
-(if (executable-find "aspell")
-    (progn
-      (setq ispell-program-name "aspell")
-      (setq ispell-extra-args '("--sug-mode=ultra")))
-  (setq ispell-program-name "ispell"))
+;; (if (executable-find "aspell")
+;;     (progn
+;;       (setq ispell-program-name "aspell")
+;;       (setq ispell-extra-args '("--sug-mode=ultra")))
+;;   (setq ispell-program-name "ispell"))
 
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'org-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'text-mode-hook 'flyspell-mode)
+;; (add-hook 'org-mode-hook 'flyspell-mode)
+;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
+;; (setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
 
 ;;
 ;; GROUP: Processes -> Gud

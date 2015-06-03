@@ -26,13 +26,13 @@
 ;;
 ;; GROUP: Files -> Dired
 ;;
-(setq
- ;; how to activate these?
- dired-dwim-target t            ; if another Dired buffer is visibpple in another window, use that directory as target for Rename/Copy
- dired-recursive-copies 'always         ; "always" means no asking
- dired-recursive-deletes 'top           ; "top" means ask once for top level directory
- dired-listing-switches "-lha"          ; human-readable listing
- )
+;; (setq
+;;  ;; how to activate these?
+;;  dired-dwim-target t            ; if another Dired buffer is visibpple in another window, use that directory as target for Rename/Copy
+;;  dired-recursive-copies 'always         ; "always" means no asking
+;;  dired-recursive-deletes 'top           ; "top" means ask once for top level directory
+;;  dired-listing-switches "-lha"          ; human-readable listing ;; not for mac
+;;  )
 
 ;; doesn't work on mac
 ;; (unless (eq system-type 'dawin)
@@ -42,8 +42,8 @@
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 ;; if it is not Windows, use the following listing switches
-(when (not (eq system-type 'windows-nt))
-  (setq dired-listing-switches "-lha --group-directories-first"))
+;; (when (not (eq system-type 'windows-nt))
+;;   (setq dired-listing-switches "-lha --group-directories-first"))
 
 ;;; KEY BINDINGS.
 ;; (define-key ctl-x-map "\C-j" 'dired-jump)
