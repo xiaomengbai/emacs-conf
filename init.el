@@ -22,6 +22,7 @@
                      dtrt-indent ws-butler smex
                      flx-ido ido-ubiquitous ido
                      monokai-theme zenburn-theme color-theme-sanityinc-tomorrow
+                     js2-mode ac-js2
 		     ))
 
 (package-initialize)
@@ -71,9 +72,6 @@
 (rebox-mode t)
 
 
-
-
-
 ;;
 ;; package: workgroups2
 ;; convenience -> workgroups
@@ -85,6 +83,9 @@
 (server-start)
 
 (provide 'init)
+
+(global-set-key "\C-c \C-c" 'compile)
+
 ;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -93,6 +94,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
  '(custom-safe-themes (quote ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
+ '(helm-mode t)
+ '(org-agenda-files (quote ("~/projects/note/todo.org")))
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "emacsclient -e '(progn (find-file-other-window \"*\"))'") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

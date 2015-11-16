@@ -197,3 +197,10 @@
 
 (add-hook 'c-mode-common-hook (lambda ()
                                 (local-set-key (kbd "C-c C-c") 'compile)))
+
+
+;; javascript
+(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+(setq js2-highlight-level 3)
