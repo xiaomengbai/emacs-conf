@@ -22,7 +22,7 @@
                      dtrt-indent ws-butler smex
                      flx-ido ido-ubiquitous ido
                      monokai-theme zenburn-theme color-theme-sanityinc-tomorrow
-                     js2-mode ac-js2
+                     js2-mode ac-js2 ggtags
 		     ))
 
 (package-initialize)
@@ -47,7 +47,9 @@
 (add-to-list 'load-path "~/.emacs.d/custom/")
 
 ;; load modules
-
+;; (require 'setup-helm)
+;; (require 'setup-helm-gtags)
+;; (require 'ggtags)
 
 (require 'setup-applications)
 (require 'setup-communication)
@@ -57,7 +59,6 @@
 (require 'setup-editing)
 (require 'setup-environment)
 (require 'setup-external)
-(require 'setup-faces-and-ui)
 (require 'setup-files)
 (require 'setup-help)
 (require 'setup-programming)
@@ -114,3 +115,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+(require 'setup-faces-and-ui)

@@ -6,7 +6,10 @@
 (require 'eshell)
 ;; what's these two???
 (require 'em-alias)
-;;(require 'cl)
+
+;; see https://www.emacswiki.org/emacs/CommonLispForEmacs
+;; (require 'cl)
+(eval-when-compile (require 'cl))
 
 
 ;; Advise find-file-other-window to accept more than one file

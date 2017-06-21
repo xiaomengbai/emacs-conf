@@ -284,8 +284,8 @@ Position the cursor at it's beginning, according to the current mode."
 ;;
 ;; GROUP: Editing -> Undo -> Undo Tree 
 ;;
-;; C-/: undo
-;; C-_: redo
+;; C-/, C-_: undo
+;; C-?, M-_: redo
 ;; C-x u: view the tree
 (require 'undo-tree)
 (global-undo-tree-mode)
