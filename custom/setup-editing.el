@@ -38,6 +38,9 @@
                                           newline
                                           newline-mark))
                             (whitespace-mode 1)))
+;; (add-hook 'diff-mode-hook (lambda ()
+;;                             (golden-ratio-mode -1)
+;;                             ))
 
 ;; customize C-a
 (defun prelude-move-beginning-of-line (arg)

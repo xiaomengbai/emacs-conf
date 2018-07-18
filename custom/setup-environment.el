@@ -7,7 +7,7 @@
 (setq inhibit-startup-screen t)
 
 ;;
-;; GROUP: Environment -> Minibuffer 
+;; GROUP: Environment -> Minibuffer
 ;;
 ;; (icomplete-mode)
 
@@ -38,8 +38,8 @@
 ;;
 ;; only turn on if a window system is available
 ;; this prevents error under terminal that does not support X
-(case window-system
-  ((x w32) (nyan-mode)))
+;; (case window-system
+;;   ((x w32) (nyan-mode)))
 
 
 ;;
@@ -75,6 +75,6 @@
                                    "magit-reflog-mode"
                                    "magit-status-mode"
                                    "IELM"
-                                   "eshell-mode" "dired-mode"))
+                                   "eshell-mode" "dired-mode" "diff-mode"))
 (golden-ratio-mode)
 

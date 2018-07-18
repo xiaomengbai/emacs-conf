@@ -10,11 +10,12 @@
 
 
 ;; Advise find-file-other-window to accept more than one file
-(defadvice find-file-other-window (around find-files activate)
-  "Also find all files within a list of files. This even works recursively."
-  (if (listp filename)
-      (loop for f in filename do (find-file-other-window f wildcards))
-    ad-do-it))
+;; warnings when compile
+;; (defadvice find-file-other-window (around find-files activate)
+;;   "Also find all files within a list of files. This even works recursively."
+;;   (if (listp filename)
+;;       (loop for f in filename do (find-file-other-window f wildcards))
+;;     ad-do-it))
 
 ;; In Eshell, you can run the commands in M-x
 ;; Here are the aliases to the commands.
@@ -32,8 +33,15 @@
    (setq pcomplete-cycle-completions nil)))
 
 ;; change listing switches based on OS
-(when (not (eq system-type 'windows-nt))
+(when (and
+       (not (eq system-type 'windows-nt))
+       (not (eq system-type 'darwin))
+       )
   (eshell/alias "ls" "ls --color -h --group-directories-first $*"))
+(when (eq system-type 'darwin)
+  (eshell/alias "ls" "ls -h $*"))
+;; ls does not accept long options in mac
+;; (eshell/alias "ls" "ls --color -h --group-directories-first $*"))
 
 
 (provide 'setup-applications)

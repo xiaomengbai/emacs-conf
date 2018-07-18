@@ -33,12 +33,13 @@
 (setq ibuffer-use-other-window t) ;; always display ibuffer in another window
 
 ;; GROUP: Convenience -> Linum
-(add-hook 'prog-mode-hook 'linum-mode) ;; enable linum only in programming modes
+(add-hook 'prog-mode-hook 'display-line-numbers-mode) ;; enable linum only in programming modes
 
 ;; GROUP: Convenience -> Whitespace
 
 ;; whenever you create useless whitespace, the whitespace is highlighted
 (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+(add-hook 'org-mode-hook 'display-line-numbers-mode)
 
 ;; activate whitespace-mode to view all whitespace characters
 (global-set-key (kbd "C-c w") 'whitespace-mode)
@@ -167,12 +168,12 @@
 (ido-mode +1)
 
 
-;;
-;; PACKAGE: ido-ubiquitous
-;;
-;; GROUP: Development -> Extensions -> Ido -> Ido Ubiquitous
-;;
-(ido-ubiquitous-mode +1)
+;; ;;
+;; ;; PACKAGE: ido-ubiquitous
+;; ;;
+;; ;; GROUP: Development -> Extensions -> Ido -> Ido Ubiquitous
+;; ;;
+;; (ido-ubiquitous-mode +1)
 
 
 ;;

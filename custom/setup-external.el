@@ -10,11 +10,14 @@
 ;;       (setq ispell-extra-args '("--sug-mode=ultra")))
 ;;   (setq ispell-program-name "ispell"))
 
-;; (add-hook 'text-mode-hook 'flyspell-mode)
-;; (add-hook 'org-mode-hook 'flyspell-mode)
-;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-;; (setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
+(setq flyspell-issue-welcome-flag nil) ;; fix flyspell problem
+
+;; on mac, need to specify the path
+(setq ispell-program-name "/opt/local/bin/ispell")
 
 ;;
 ;; GROUP: Processes -> Gud

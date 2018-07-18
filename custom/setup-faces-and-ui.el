@@ -23,6 +23,7 @@
 ;;(load-theme 'zenburn t)
 
 ;; sanitynic-tomorrow
+(setq custom-safe-themes t)
 (require 'color-theme-sanityinc-tomorrow)
 
 ;; (color-theme-sanityinc-tomorrow-day) ;; worst one
