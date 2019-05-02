@@ -172,7 +172,7 @@
 ;;
 ;; GROUP: Development -> Extensions -> Ido -> Ido Ubiquitous
 ;;
-(ido-ubiquitous-mode +1)
+;;(ido-ubiquitous-mode +1)
 
 
 ;;

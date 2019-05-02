@@ -7,20 +7,19 @@
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ;; add all packages required here
-(setq package-list '(undo-tree yasnippet rebox2
+(setq package-list '(undo-tree yasnippet rebox2 yasnippet-snippets
 		     volatile-highlights workgroups2 duplicate-thing
                      smartparens clean-aindent-mode company
                      expand-region ibuffer-vc projectile
-                     dired+ recentf-ext ztree
+                     recentf-ext ztree
                      vlf saveplace shell-pop
                      diff-hl magit flycheck
                      flycheck-tip nyan-mode golden-ratio
                      highlight-numbers highlight-symbol color-theme-solarized
-                     info+ discover-my-major rainbow-mode
-                     help+ help-fns+ help-mode+
+                     discover-my-major rainbow-mode
                      sr-speedbar function-args company-c-headers
                      dtrt-indent ws-butler smex
-                     flx-ido ido-ubiquitous ido
+                     flx-ido ido
                      monokai-theme zenburn-theme color-theme-sanityinc-tomorrow
                      js2-mode ac-js2 ggtags
 		     ))
@@ -66,6 +65,18 @@
 ;; (require 'setup-local)
 ;; (require 'setup-multimedia)
 
+(if (eq system-type 'windows-nt)
+    (setq tramp-default-method "plinkx"))
+
+(require 'tramp)
+(setq explicit-shell-file-name "/bin/bash")
+
+(add-to-list 'tramp-remote-path "/home/xiao.735/externs/bin")
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+;; (add-to-list 'tramp-remote-process-environment "SHELL=/bin/bash")
+;; (add-to-list 'tramp-remote-process-environment "PATH=/home/xiao.735/externs/bin:$PATH")
+;; (setq ispell-program-name "aspell")
+
 ;;,----------------------------------------------------------
 ;;| manage the comment Mark the comment region and then "M-Q"
 ;;`----------------------------------------------------------
@@ -81,7 +92,7 @@
 (require 'workgroups2)
 (workgroups-mode 1)
 
-(server-start)
+;; (server-start)
 
 (provide 'init)
 
@@ -98,7 +109,10 @@
    (quote
     ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
  '(helm-mode t)
- '(org-agenda-files (quote ("~/projects/note/todo.org")))
+ '(org-agenda-files (quote ("~/projects/note/todo.org")) t)
+ '(package-selected-packages
+   (quote
+    (yasnippet-snippets cuda-mode gnuplot-mode cmake-mode ztree zenburn-theme yasnippet ws-butler workgroups2 volatile-highlights vlf undo-tree sr-speedbar smex smartparens shell-pop recentf-ext rebox2 rainbow-mode projectile nyan-mode monokai-theme magit ibuffer-vc highlight-symbol highlight-numbers golden-ratio ggtags function-args flycheck-tip flx-ido expand-region duplicate-thing dtrt-indent discover-my-major diff-hl company-c-headers color-theme-solarized color-theme-sanityinc-tomorrow clean-aindent-mode ac-js2)))
  '(tex-dvi-view-command
    (quote
     (cond
@@ -118,3 +132,4 @@
 
 
 (require 'setup-faces-and-ui)
+(setq org-agenda-files (list "~/work/note.org"))

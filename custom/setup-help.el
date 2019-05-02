@@ -3,7 +3,7 @@
 ;;
 ;; GROUP: Help -> Info+
 ;;
-(require 'info+)
+;; (require 'info+)
 
 
 ;; A quick major mode help with discover-my-major
@@ -33,7 +33,7 @@
 ;; `C-h C-M-a' `tags-apropos'
 ;; [mouse-1] `mouse-help-on-click'
 ;; (non-mode-line) [mouse-1] `mouse-help-on-mode-line-click' (mode-line)
-(require 'help+)
+;; (require 'help+)
 
 
 ;;
@@ -50,7 +50,7 @@
 ;; C-h M-f	describe-file
 ;; C-h M-k	describe-keymap
 ;; C-h M-l	find-function-on-key
-(require 'help-fns+)
+;; (require 'help-fns+)
 
 
 ;;
@@ -58,4 +58,4 @@
 ;;
 ;; GROUP: Help
 ;;
-(require 'help-mode+)
+;; (require 'help-mode+)

@@ -58,6 +58,36 @@
   (if (boundp 'helm-alive-p)
       (symbol-value 'helm-alive-p)))
 
+;; ediff
+(eval-after-load "golden-ratio"
+  '(progn
+     (add-to-list 'golden-ratio-exclude-modes "ediff-mode")
+     (add-to-list 'golden-ratio-inhibit-functions 'pl/ediff-comparison-buffer-p)))
+
+(defun pl/ediff-comparison-buffer-p ()
+  (and (boundp 'ediff-this-buffer-ediff-sessions)
+       ediff-this-buffer-ediff-sessions))
+
+;; The version which also called balance-windows at this point looked
+;; a bit broken, but could probably be replaced with:
+;;
+;; (defun pl/ediff-comparison-buffer-p ()
+;;   (and (boundp 'ediff-this-buffer-ediff-sessions)
+;;        ediff-this-buffer-ediff-sessions
+;;        (prog1 t (balance-windows))))
+;;
+;; However I think the following has the desired effect, and without
+;; messing with the ediff control buffer:
+;;
+(add-hook 'ediff-startup-hook 'my-ediff-startup-hook)
+
+(defun my-ediff-startup-hook ()
+  "Workaround to balance the ediff windows when golden-ratio is enabled."
+  ;; There's probably a better way to do it.
+  (ediff-toggle-split)
+  (ediff-toggle-split))
+
+
 ;; do not enable golden-raio in thses modes
 (setq golden-ratio-exclude-modes '("ediff-mode"
                                    "gud-mode"
