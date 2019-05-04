@@ -112,7 +112,7 @@
  '(org-agenda-files (quote ("~/projects/note/todo.org")) t)
  '(package-selected-packages
    (quote
-    (yasnippet-snippets cuda-mode gnuplot-mode cmake-mode ztree zenburn-theme yasnippet ws-butler workgroups2 volatile-highlights vlf undo-tree sr-speedbar smex smartparens shell-pop recentf-ext rebox2 rainbow-mode projectile nyan-mode monokai-theme magit ibuffer-vc highlight-symbol highlight-numbers golden-ratio ggtags function-args flycheck-tip flx-ido expand-region duplicate-thing dtrt-indent discover-my-major diff-hl company-c-headers color-theme-solarized color-theme-sanityinc-tomorrow clean-aindent-mode ac-js2)))
+    (yasnippet yasnippet-snippets yasnippet-classic-snippets cuda-mode gnuplot-mode cmake-mode ztree zenburn-theme ws-butler workgroups2 volatile-highlights vlf undo-tree sr-speedbar smex smartparens shell-pop recentf-ext rebox2 rainbow-mode projectile nyan-mode monokai-theme magit ibuffer-vc highlight-symbol highlight-numbers golden-ratio ggtags function-args flycheck-tip flx-ido expand-region duplicate-thing dtrt-indent discover-my-major diff-hl company-c-headers color-theme-solarized color-theme-sanityinc-tomorrow clean-aindent-mode ac-js2)))
  '(tex-dvi-view-command
    (quote
     (cond

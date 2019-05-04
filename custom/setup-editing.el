@@ -298,7 +298,7 @@ Position the cursor at it's beginning, according to the current mode."
 ;;
 (require 'yasnippet)
 (yas-global-mode 1)
-
+(define-key yas-minor-mode-map (kbd "SPC") yas-maybe-expand)
 
 ;;
 ;; Package: dtrt-indent
