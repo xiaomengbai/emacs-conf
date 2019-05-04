@@ -67,9 +67,15 @@
 
 ;; check this, I plan to use the semantic back-end
 ;;
-;; (setq company-backends (delete 'company-semantic company-backends))
-(define-key c-mode-map  [(tab)] 'company-complete)
-(define-key c++-mode-map  [(tab)] 'company-complete)
+(setq company-backends (delete 'company-semantic company-backends))
+;; (define-key c-mode-map  [(tab)] 'company-complete)
+;; (define-key c++-mode-map  [(tab)] 'company-complete)
+
+(eval-after-load 'company
+  '(progn
+     (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+     (define-key company-active-map [tab] 'company-complete-common-or-cycle)))
+
 
 ;;
 ;; Package: company-c-headers
@@ -223,7 +229,6 @@
       helm-etags-fuzzy-match                t
       )
 
-
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
@@ -244,3 +249,4 @@
 ;; jump to line
 ;;
 (global-set-key (kbd "C-j") 'goto-line)
+

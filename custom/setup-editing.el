@@ -319,5 +319,8 @@ Position the cursor at it's beginning, according to the current mode."
 ;;
 (require 'smart-tab)
 (global-smart-tab-mode)
-
-
+(add-to-list 'smart-tab-completion-functions-alist
+             '(c-mode . company-complete))
+(add-to-list 'smart-tab-completion-functions-alist
+             '(c++-mode . company-complete))
+(setq smart-tab-using-hippie-expand t)

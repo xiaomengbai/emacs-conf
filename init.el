@@ -109,10 +109,10 @@
    (quote
     ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
  '(helm-mode t)
- '(org-agenda-files (quote ("~/projects/note/todo.org")) t)
+ '(org-agenda-files (quote ("~/projects/note/todo.org")))
  '(package-selected-packages
    (quote
-    (helm yasnippet yasnippet-snippets yasnippet-classic-snippets cuda-mode gnuplot-mode cmake-mode ztree zenburn-theme ws-butler workgroups2 volatile-highlights vlf undo-tree sr-speedbar smex smartparens shell-pop recentf-ext rebox2 rainbow-mode projectile nyan-mode monokai-theme magit ibuffer-vc highlight-symbol highlight-numbers golden-ratio ggtags function-args flycheck-tip flx-ido expand-region duplicate-thing dtrt-indent discover-my-major diff-hl company-c-headers color-theme-solarized color-theme-sanityinc-tomorrow clean-aindent-mode ac-js2)))
+    (company-irony helm yasnippet yasnippet-snippets yasnippet-classic-snippets cuda-mode gnuplot-mode cmake-mode ztree zenburn-theme ws-butler workgroups2 volatile-highlights vlf undo-tree sr-speedbar smex smartparens shell-pop recentf-ext rebox2 rainbow-mode projectile nyan-mode monokai-theme magit ibuffer-vc highlight-symbol highlight-numbers golden-ratio ggtags function-args flycheck-tip flx-ido expand-region duplicate-thing dtrt-indent discover-my-major diff-hl company-c-headers color-theme-solarized color-theme-sanityinc-tomorrow clean-aindent-mode ac-js2)))
  '(tex-dvi-view-command
    (quote
     (cond
