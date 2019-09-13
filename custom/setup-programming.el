@@ -145,22 +145,22 @@
 ;; get it work larter
 ;;
 ;;
-(require 'ggtags)
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-              (ggtags-mode 1))))
+;; (require 'ggtags)
+;; (add-hook 'c-mode-common-hook
+;;           (lambda ()
+;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+;;               (ggtags-mode 1))))
 
-(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
-(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
-(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
-(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
-(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
-(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+;; (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+;; (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+;; (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+;; (define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+;; (define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+;; (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
 
-(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+;; (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
 
-
+;; ctags -e -R --langmap=c++:+.cu .
 
 ;; Semantics
 
@@ -189,11 +189,12 @@
 ;; Package: function-args
 ;;
 (require 'function-args)
-(fa-config-default)
-;;(define-key c-mode-map  [(contrl tab)] 'moo-complete)
-;;(define-key c++-mode-map  [(control tab)] 'moo-complete)
+;; (fa-config-default)
+;; ;;(define-key c-mode-map  [(contrl tab)] 'moo-complete)
+;; ;;(define-key c++-mode-map  [(control tab)] 'moo-complete)
 (define-key c-mode-map (kbd "M-o")  'fa-show)
 (define-key c++-mode-map (kbd "M-o")  'fa-show)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (add-hook 'c-mode-common-hook (lambda ()
                                 (local-set-key (kbd "C-c C-c") 'compile)))

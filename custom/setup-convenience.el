@@ -137,24 +137,6 @@
               filename-and-process)))
 
 
-;;
-;; PACKAGES: projectile
-;;
-;; GROUP: Convenience -> Projectile
-;;
-;; like ido + smex + ido-ubiquitous + flx-ido  ;; seems no!
-;;
-;;
-;; C-c p f: Jump to any file in the project
-;; C-c p d: Jump to any directory in the project
-;; C-c p b: List buffers local to current project
-;; C-c p e: Jump to recently visited files in project
-;; C-c p g s: Grep in project
-;; C-c p o: Multi-occur in project buffers
-;; C-c p r: Simple refactoring with text replace in current project
-;; C-c p p: Switch visited projects (visited once an Projectile remembers)
-
-(projectile-global-mode)
 
 
 ;;
@@ -234,12 +216,29 @@
       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t
-      helm-echo-input-in-header-line t
+      helm-echo-input-in-header-line        t
+      helm-ff-file-name-history-use-recentf t
       )
 
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
+;;(global-set-key (kbd "C-x b") #'helm-mini)
+;;(global-set-key (kbd "C-x b") #'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
+
+(setq helm-autoresize-max-height 40)
+(setq helm-autoresize-min-height 20)
+(helm-autoresize-mode 1)
+
+;; (defun helm-my-buffers ()
+;;   (interactive)
+;;   (helm-other-buffer '(;helm-source-buffers-list
+;;                        ;helm-source-bookmark-files&dirs
+;;                        helm-source--ff-file-name-history)
+;;                        ;helm-source-file-name-history
+;;                        ;helm-source-buffer-not-found)
+;;                      "*helm-my-buffers*"))
+;; (global-set-key (kbd "C-x C-f") #'helm-my-buffers)
 
 (helm-mode 1)
 
@@ -250,3 +249,28 @@
 ;;
 (global-set-key (kbd "C-j") 'goto-line)
 
+
+;;
+;; PACKAGES: projectile
+;;
+;; GROUP: Convenience -> Projectile
+;;
+;; like ido + smex + ido-ubiquitous + flx-ido  ;; seems no!
+;;
+;;
+;; C-c p f: Jump to any file in the project
+;; C-c p d: Jump to any directory in the project
+;; C-c p b: List buffers local to current project
+;; C-c p e: Jump to recently visited files in project
+;; C-c p g s: Grep in project
+;; C-c p o: Multi-occur in project buffers
+;; C-c p r: Simple refactoring with text replace in current project
+;; C-c p p: Switch visited projects (visited once an Projectile remembers)
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+;; (helm-projectile-on)
+
+(require 'helm-projectile)
+(helm-projectile-on)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
