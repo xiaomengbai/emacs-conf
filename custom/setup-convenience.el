@@ -70,7 +70,7 @@
 (setq company-backends (delete 'company-semantic company-backends))
 ;; (define-key c-mode-map  [(tab)] 'company-complete)
 ;; (define-key c++-mode-map  [(tab)] 'company-complete)
-
+(setq company-clang-executable "clang")
 (eval-after-load 'company
   '(progn
      (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)

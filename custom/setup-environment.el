@@ -52,6 +52,7 @@
 (add-to-list 'golden-ratio-exclude-modes "ediff-mode")
 (add-to-list 'golden-ratio-exclude-modes "helm-mode")
 (add-to-list 'golden-ratio-exclude-modes "dired-mode")
+(add-to-list 'golden-ratio-exclude-modes "speedbar-mode")
 (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
 
 (defun pl/helm-alive-p ()
@@ -62,6 +63,7 @@
 (eval-after-load "golden-ratio"
   '(progn
      (add-to-list 'golden-ratio-exclude-modes "ediff-mode")
+     (add-to-list 'golden-ratio-exclude-modes "speedbar-mode")
      (add-to-list 'golden-ratio-inhibit-functions 'pl/ediff-comparison-buffer-p)))
 
 (defun pl/ediff-comparison-buffer-p ()

@@ -7,6 +7,20 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-iswitchb)
 
+(setq org-directory "~/work/notes/")
+
+;; setup babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((lisp . t) (perl . t)))
+
+;; do not prompt before evaluate code blocks
+(setq org-confirm-babel-evaluate nil)
+
+;; set a default target file for capture
+(setq org-default-notes-file (concat org-directory "captures.org"))
+
+(setq org-agenda-files (list "~/work/projects.org" org-default-notes-file))
 
 ;; set column fill width
 ;; (set-fill-column 120)

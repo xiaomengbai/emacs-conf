@@ -4,8 +4,7 @@
 ;; First we want to add the package manage
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
+	     '("melpa" . "https://melpa.org/packages/") t)
 ;; add all packages required here
 (setq package-list '(undo-tree yasnippet rebox2 yasnippet-snippets helm helm-projectile pdf-tools
 		     volatile-highlights workgroups2 duplicate-thing
@@ -21,9 +20,10 @@
                      dtrt-indent ws-butler smex
                      flx-ido ido
                      monokai-theme zenburn-theme color-theme-sanityinc-tomorrow
-                     js2-mode ac-js2 ggtags
+                     js2-mode ac-js2 helm-gtags
+;;                     el-get ht req-package
+;; gtags
 		     ))
-
 (package-initialize)
 
 ;; refresh the package list, I am not sure
@@ -36,6 +36,14 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+;; (require 'req-package)
+;; (req-package use-package-el-get)
+  ;; :force t
+  ;; :config
+  ;; (add-to-list 'el-get-recipe-path "~/emacs.d/el-get/el-get/recipes")
+  ;; (el-get 'sync)
+  ;; (use-package-el-get-setup))
 
 ;; OK, we manage our *.el files as package(use require) not the
 ;; source file (use load)
@@ -70,7 +78,7 @@
 (require 'tramp)
 (setq explicit-shell-file-name "/bin/bash")
 
-(add-to-list 'tramp-remote-path "/home/xiao.735/externs/bin")
+(add-to-list 'tramp-remote-path "~/externs/bin")
 (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
 ;; (add-to-list 'tramp-remote-process-environment "SHELL=/bin/bash")
 ;; (add-to-list 'tramp-remote-process-environment "PATH=/home/xiao.735/externs/bin:$PATH")
@@ -83,20 +91,30 @@
 (rebox-mode t)
 
 
+(server-start)
+
 ;;
 ;; package: workgroups2
 ;; convenience -> workgroups
 ;;
 ;; restore the session
+;; (req-package workgroups2
+;;   config:
+;;   (progn
+;;     (workgroups-mode 1)
+;;     )
+;;   )
 (require 'workgroups2)
 (workgroups-mode 1)
 
 
-;; (server-start)
+;;(desktop-save-mode 1)
+;;(setq desktop-files-not-to-save "\\(^/[^/:s]*:\\|(ftp)$\\)")
 
 (provide 'init)
 
 (global-set-key "\C-c \C-c" 'compile)
+(global-set-key "\C-cr" 'revert-buffer)
 
 ;;; init.el ends here
 (custom-set-variables
@@ -109,10 +127,10 @@
    (quote
     ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
  '(helm-mode t)
- '(org-agenda-files (quote ("~/projects/note/todo.org")))
  '(package-selected-packages
    (quote
-    (org-noter pdf-tools helm-projectile company-irony helm yasnippet yasnippet-snippets yasnippet-classic-snippets cuda-mode gnuplot-mode cmake-mode ztree zenburn-theme ws-butler workgroups2 volatile-highlights vlf undo-tree sr-speedbar smex smartparens shell-pop recentf-ext rebox2 rainbow-mode projectile nyan-mode monokai-theme magit ibuffer-vc highlight-symbol highlight-numbers golden-ratio ggtags function-args flycheck-tip flx-ido expand-region duplicate-thing dtrt-indent discover-my-major diff-hl company-c-headers color-theme-solarized color-theme-sanityinc-tomorrow clean-aindent-mode ac-js2)))
+    (wc-mode helm-books vterm ht el-get req-package helm-gtags org-noter pdf-tools helm-projectile company-irony helm yasnippet yasnippet-snippets yasnippet-classic-snippets cuda-mode gnuplot-mode cmake-mode ztree zenburn-theme ws-butler workgroups2 volatile-highlights vlf undo-tree sr-speedbar smex smartparens shell-pop recentf-ext rebox2 rainbow-mode projectile nyan-mode monokai-theme magit ibuffer-vc highlight-symbol highlight-numbers golden-ratio ggtags function-args flycheck-tip flx-ido expand-region duplicate-thing dtrt-indent discover-my-major diff-hl company-c-headers color-theme-solarized color-theme-sanityinc-tomorrow clean-aindent-mode ac-js2)))
+ '(req-package-log-level (quote debug))
  '(tex-dvi-view-command
    (quote
     (cond
@@ -132,4 +150,4 @@
 
 
 (require 'setup-faces-and-ui)
-(setq org-agenda-files (list "~/work/note.org"))
+(put 'downcase-region 'disabled nil)
