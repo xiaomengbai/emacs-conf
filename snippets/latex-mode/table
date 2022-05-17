@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: table
+# key: \table
+# --
+
+\begin{table}
+  \centering
+  \ra{1.2}
+  \label{tab:$1}
+  \caption{$2}
+  \begin{tabular}{@{}lrrrr@{}}
+    \toprule
+    $0 & & & & \\
+
+    \midrule
+    & & & & \\
+
+    \bottomrule
+  \end{tabular}
+\end{table}

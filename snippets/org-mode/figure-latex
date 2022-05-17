@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: figure-latex
+# key: \figure
+# --
+
+Figure\nbsp[[fig:$1]]$0

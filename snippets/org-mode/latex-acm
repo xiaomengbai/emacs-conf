@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: latex-acm
+# key: latex-acm
+# --
+
+#+STARTUP: overview
+#+TITLE: $1
+#+BIBLOGRAPHY: $2.bib
+#+LATEX_CLASS: acm
+#+LATEX_CLASS_OPTIONS: [sigconf, nonacm]
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+#+OPTIONS: toc:nil
+
+#+begin_abstract
+$3
+#+end_abstract
+

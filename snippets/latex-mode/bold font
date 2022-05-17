@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bold font
+# key: \bf
+# --
+
+{\bf $1}$0

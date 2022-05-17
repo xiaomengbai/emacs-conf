@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: figure
+# key: \figure
+# --
+
+\begin{figure}[!t]
+  \centering
+  \label{fig:$1}
+  \includegraphics[width=.48\textwidth]{figures/$1-crop.pdf}
+  \caption{$2}
+\end{figure}

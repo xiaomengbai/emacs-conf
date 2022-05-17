@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: code-style
+# key: \tt
+# --
+
+{\tt $1}$0

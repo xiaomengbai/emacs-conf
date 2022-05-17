@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: latexcite
+# key: \cite
+# --
+
+\nbsp\cite{$1}${0:$$(save-excursion (goto-char yas-snippet-beg)
+(delete-char (- (skip-chars-backward " "))))}
