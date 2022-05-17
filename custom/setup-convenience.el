@@ -1,276 +1,244 @@
-(provide 'setup-convenience)
-
-;; update any change made on file to the current buffer
-(global-auto-revert-mode)
-
-
-;; GROUP: Convenience -> Hippe Expand
-;; hippie-expand is a better version of dabbrev-expand.
-;; While dabbrev-expand searches for words you already types, in current
-;; buffers and other buffers, hippie-expand includes more sources,
-;; such as filenames, klll ring...
-;;
-;; Try to find completion from recent typed, etc... 
-(global-set-key (kbd "M-/") 'hippie-expand) ;; replace dabbrev-expand
-(setq
- hippie-expand-try-functions-list
- '(try-expand-dabbrev ;; Try to expand word "dynamically", searching the current buffer.
-   try-expand-dabbrev-all-buffers ;; Try to expand word "dynamically", searching all other buffers.
-   try-expand-dabbrev-from-kill ;; Try to expand word "dynamically", searching the kill ring.
-   try-complete-file-name-partially ;; Try to complete text as a file name, as many characters as unique.
-   try-complete-file-name ;; Try to complete text as a file name.
-   try-expand-all-abbrevs ;; Try to expand word before point according to all abbrev tables.
-   try-expand-list ;; Try to complete the current line to an entire line in the buffer.
-   try-expand-line ;; Try to complete the current line to an entire line in the buffer.
-   try-complete-lisp-symbol-partially ;; Try to complete as an Emacs Lisp symbol, as many characters as unique.
-   try-complete-lisp-symbol) ;; Try to complete word as an Emacs Lisp symbol.
- )
-
-;; highlight current line
-(global-hl-line-mode)
-
-;; GROUP: Convenience -> Ibuffer
-(setq ibuffer-use-other-window t) ;; always display ibuffer in another window
-
-;; GROUP: Convenience -> Linum
-(add-hook 'prog-mode-hook 'linum-mode) ;; enable linum only in programming modes
-
-;; GROUP: Convenience -> Whitespace
-
-;; whenever you create useless whitespace, the whitespace is highlighted
-(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
-
-;; activate whitespace-mode to view all whitespace characters
-(global-set-key (kbd "C-c w") 'whitespace-mode)
-
-;; GROUP: Convenience -> Windmove
-;;
-;; easier window navigation
-;; use shift+up/down/left/right around window
-(windmove-default-keybindings)
+;;; package --- Summary
+;;; Commentry:
+;; This module for some convenient setups
 
 
-;;
-;; PACKAGE: company
-;;
-;; GROUP: Convenience -> Company
-;;
-;; auto-completion
-;;
-;; M-n/M-p: move up and down
-;; RET: complete
-;; TAB: complete the common
-;; M-{0,9}: locate the first ten guys
-(require 'company)
-(require 'cc-mode)
-(add-hook 'after-init-hook 'global-company-mode)
-
-;; check this, I plan to use the semantic back-end
-;;
-(setq company-backends (delete 'company-semantic company-backends))
-;; (define-key c-mode-map  [(tab)] 'company-complete)
-;; (define-key c++-mode-map  [(tab)] 'company-complete)
-(setq company-clang-executable "clang")
-(eval-after-load 'company
-  '(progn
-     (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-     (define-key company-active-map [tab] 'company-complete-common-or-cycle)))
-
-
-;;
-;; Package: company-c-headers
-;;
-(require 'company-c-headers)
-(add-to-list 'company-backends 'company-c-headers)
-;; c++ headers
-;; for my mac
-(if (eq system-type 'darwin)
-    (add-to-list
-     'company-c-headers-path-system
-     "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/c++/4.2.1/")
-  (add-to-list
-   'company-c-headers-path-system
-   "/usr/include/c++/4.8.2/"))
-
-;; may try auto-complete
-;; (require 'auto-complete)
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-;; (defun my:ac-c-header-init ()
-;;   (require 'auto-complete-c-headers)
-;;   )
-;; (add-hook 'c-mode-common-hook )
-
-
-;;
-;; Package: expand-region
-;;
-;; GROUP: Convenience -> Abbreviation -> Expand
-;;
-(require 'expand-region)
-(global-set-key (kbd "M-m") 'er/expand-region)
-
-
-;; enable ibuffer
-(require 'ibuffer)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;;
-;; set iBuffer as VC mode
-;;
-(add-hook 'ibuffer-hook
-          (lambda ()
-            (ibuffer-vc-set-filter-groups-by-vc-root)
-            (unless (eq ibuffer-sorting-mode 'alphabetic)
-              (ibuffer-do-sort-by-alphabetic))))
-
-(setq ibuffer-formats
-      '((mark modified read-only vc-status-mini " "
-              (name 18 18 :left :elide)
-              " "
-              (size 9 -1 :right)
-              " "
-              (mode 16 16 :left :elide)
-              " "
-              (vc-status 16 16 :left)
-              " "
-              filename-and-process)))
-
-
-
-
-;;
-;; GROUP: Development -> Extensions -> Ido
-;;
-;; (require 'ido)
-
-;; (setq ido-enable-prefix nil
-;;       ido-enable-flex-matching t
-;;       ido-create-new-buffer 'always
-;;       ido-use-filename-at-point 'guess
-;;       ido-max-prospects 10
-;;       ido-default-file-method 'selected-window
-;;       ido-auto-merge-work-directories-length -1)
-
-;; (ido-mode +1)
-
-
-;;
-;; PACKAGE: ido-ubiquitous
-;;
-;; GROUP: Development -> Extensions -> Ido -> Ido Ubiquitous
-;;
-;;(ido-ubiquitous-mode +1)
-
-
-;;
-;; PACKAGE: flx-ido
-;;
-;; GROUP: Development -> Extensions -> Ido
-;;
-;;; smarter fuzzy matching for ido
-;; (flx-ido-mode +1)
-;; disable ido faces to see flx highlights
-;; (setq ido-use-faces nil)
-
-
-;;
-;; PACKAGE: smex
-;;
-;; GROUP: Convenience -> Extensions -> Smex
-;;
-;; (require 'smex)
-;; (smex-initialize)
-;; (global-set-key (kbd "M-x") 'smex)
-;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
-
-;; helm
-;; Try helm and disabling ido and smex
-(require 'helm)
-(require 'helm-config)
-
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-
-;; (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-;; (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-;; enable fuzzy match
-(setq helm-mode-fuzzy-match                 t
-      helm-completion-in-region-fuzzy-match t
-      )
-(setq helm-recentf-fuzzy-match              t
-      helm-buffers-fuzzy-matching           t
-      helm-locate-fuzzy-match               t
-      helm-M-x-fuzzy-match                  t
-      helm-semantic-fuzzy-match             t
-      helm-imenu-fuzzy-match                t
-      helm-apropos-fuzzy-match              t
-      helm-lisp-fuzzy-completion            t
-      helm-session-fuzzy-match              t
-      helm-etags-fuzzy-match                t
-      )
-
-(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-      helm-ff-file-name-history-use-recentf t
-      helm-echo-input-in-header-line        t
-      helm-ff-file-name-history-use-recentf t
-      )
-
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-;;(global-set-key (kbd "C-x b") #'helm-mini)
-;;(global-set-key (kbd "C-x b") #'helm-buffers-list)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
-
-(setq helm-autoresize-max-height 40)
-(setq helm-autoresize-min-height 20)
-(helm-autoresize-mode 1)
-
-;; (defun helm-my-buffers ()
-;;   (interactive)
-;;   (helm-other-buffer '(;helm-source-buffers-list
-;;                        ;helm-source-bookmark-files&dirs
-;;                        helm-source--ff-file-name-history)
-;;                        ;helm-source-file-name-history
-;;                        ;helm-source-buffer-not-found)
-;;                      "*helm-my-buffers*"))
-;; (global-set-key (kbd "C-x C-f") #'helm-my-buffers)
-
-(helm-mode 1)
-
-(define-key helm-find-files-map (kbd "<tab>") 'helm-ff-RET)
-
-;;
-;; jump to line
-;;
+(global-set-key (kbd "M-n") 'highlight-symbol-next)
+(global-set-key (kbd "M-p") 'highlight-symbol-prev)
 (global-set-key (kbd "C-j") 'goto-line)
 
+(setq global-mark-ring-max 5000
+      mark-ring-max 5000
+;;      mode-require-final-newline t       ;; add a newline to EOF
+      tab-width 4
+      )
 
-;;
-;; PACKAGES: projectile
-;;
-;; GROUP: Convenience -> Projectile
-;;
-;; like ido + smex + ido-ubiquitous + flx-ido  ;; seems no!
-;;
-;;
-;; C-c p f: Jump to any file in the project
-;; C-c p d: Jump to any directory in the project
-;; C-c p b: List buffers local to current project
-;; C-c p e: Jump to recently visited files in project
-;; C-c p g s: Grep in project
-;; C-c p o: Multi-occur in project buffers
-;; C-c p r: Simple refactoring with text replace in current project
-;; C-c p p: Switch visited projects (visited once an Projectile remembers)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8)
 
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-;; (helm-projectile-on)
+(setq-default indent-tabs-mode nil)  ;; never insert tab
+(delete-selection-mode) ;; delete the region marked if typing any character
+(global-set-key (kbd "RET") 'newline-and-indent) ;; return and tab!
 
-(require 'helm-projectile)
-(helm-projectile-on)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;; GROUP: Editing -> Killing
+(setq
+ kill-ring-max 5000
+ kill-whole-line t ;; kill the line and move to next!
+ )
+
+
+;; show important whitespace in diff-mode
+;; ???
+(add-hook 'diff-mode-hook (lambda ()
+                            (setq-local whitespace-style
+                                        '(face
+                                          tabs
+                                          tab-mark
+                                          spaces
+                                          space-mark
+                                          trailing
+                                          indentation::space
+                                          indentation::tab
+                                          newline
+                                          newline-mark))
+                            (whitespace-mode 1)))
+
+;; customize C-a
+(defun prelude-move-beginning-of-line (arg)
+  "move point back to indentation of beginning of line
+
+move point to the first non-whitespace character on this line.
+if point is already there, move to the beginning of the line.
+effectively toggle between the first non-whitespace character and
+the beginning of the line.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first. If
+point reaches the beginning or end of the buffer, stop there."
+  (interactive "^p") ;; what's this mean?
+  (setq arg (or arg 1))
+
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+
+  (let ((orig-point (point)))
+    (back-to-indentation)
+    (when (= orig-point (point))
+      (move-beginning-of-line 1))))
+
+
+(global-set-key (kbd "C-a") 'prelude-move-beginning-of-line)
+
+;; the "M-w"
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy a single
+line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (message "Copied line")
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+;; the "C-w"
+(defadvice kill-region (before slick-cut activate compile)
+  "When called interactively with no active region, kill a single
+  line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
+
+;; "C-k"
+(defadvice kill-line (before check-position activate)
+  "kill a line, including whitespace characters until next non-whiepsace character
+of next line"
+  (if (member major-mode
+              '(emacs-lisp-mode scheme-mode lisp-mode
+                                c-mode c++-mode objc-mode
+                                latex-mode plain-tex-mode))
+      (if (and (eolp) (not (bolp)))
+          (progn (forward-char 1)
+                 (just-one-space 0)
+                 (backward-char 1)))))
+
+;; can check these functions later
+;; taken from prelude-editor.el
+;; automatically indenting yanked text if in programming-modes
+(defvar yank-indent-modes
+  '(LaTeX-mode TeX-mode)
+  "Modes in which to indent regions that are yanked (or yank-popped).
+Only modes that don't derive from `prog-mode' should be listed here.")
+
+(defvar yank-indent-blacklisted-modes
+  '(python-mode slim-mode haml-mode)
+  "Modes for which auto-indenting is suppressed.")
+
+(defvar yank-advised-indent-threshold 1000
+  "Threshold (# chars) over which indentation does not automatically occur.")
+
+(defun yank-advised-indent-function (beg end)
+  "Do indentation, as long as the region isn't too large."
+  (if (<= (- end beg) yank-advised-indent-threshold)
+      (indent-region beg end nil)))
+
+(defadvice yank (after yank-indent activate)
+  "If current mode is one of 'yank-indent-modes,
+indent yanked text (with prefix arg don't indent)."
+  (if (and (not (ad-get-arg 0))
+           (not (member major-mode yank-indent-blacklisted-modes))
+           (or (derived-mode-p 'prog-mode)
+               (member major-mode yank-indent-modes)))
+      (let ((transient-mark-mode nil))
+        (yank-advised-indent-function (region-beginning) (region-end)))))
+
+(defadvice yank-pop (after yank-pop-indent activate)
+  "If current mode is one of `yank-indent-modes',
+indent yanked text (with prefix arg don't indent)."
+  (when (and (not (ad-get-arg 0))
+             (not (member major-mode yank-indent-blacklisted-modes))
+             (or (derived-mode-p 'prog-mode)
+                 (member major-mode yank-indent-modes)))
+    (let ((transient-mark-mode nil))
+      (yank-advised-indent-function (region-beginning) (region-end)))))
+
+
+;; prelude-core.el
+(defun prelude-duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated. However, if
+there's a region, all lines that region covers will be duplicated."
+  (interactive "p")
+  (pcase-let* ((origin (point))
+               (`(,beg . ,end) (prelude-get-positions-of-line-or-region))
+               (region (buffer-substring-no-properties beg end)))
+    (-dotimes arg
+      (lambda (n)
+        (goto-char end)
+        (newline)
+        (insert region)
+        (setq end (point))))
+    (goto-char (+ origin (* (length region) arg) arg))))
+
+;; prelude-core.el
+(defun indent-buffer ()
+  "Indent the currently visited buffer."
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+;; prelude-editing.el
+(defcustom prelude-indent-sensitive-modes
+  '(coffee-mode python-mode slim-mode haml-mode yaml-mode)
+  "Modes for which auto-indenting is suppressed."
+  :type 'list)
+
+(defun indent-region-or-buffer ()
+  "Indent a region if selected, otherwise the whole buffer."
+  (interactive)
+  (unless (member major-mode prelude-indent-sensitive-modes)
+    (save-excursion
+      (if (region-active-p)
+          (progn
+            (indent-region (region-beginning) (region-end))
+            (message "Indented selected region."))
+        (progn
+          (indent-buffer)
+          (message "Indented buffer.")))
+      (whitespace-cleanup))))
+
+(global-set-key (kbd "C-c i") 'indent-region-or-buffer)
+
+
+;; add duplicate line function from Prelude
+;; taken from prelude-core.el
+(defun prelude-get-positions-of-line-or-region ()
+  "Return positions (beg . end) of the current line
+or region."
+  (let (beg end)
+    (if (and mark-active (> (point) (mark)))
+        (exchange-point-and-mark))
+    (setq beg (line-beginning-position))
+    (if mark-active
+        (exchange-point-and-mark))
+    (setq end (line-end-position))
+    (cons beg end)))
+
+
+(defun kill-default-buffer ()
+  "Kill the currently active buffer -- set to C-x k so that users are not asked which buffer they want to kill."
+  (interactive)
+  (let (kill-buffer-query-functions) (kill-buffer)))
+
+(global-set-key (kbd "C-x k") 'kill-default-buffer)
+
+
+;; smart openline
+(defun prelude-smart-open-line (arg)
+  "Insert an empty line after the current line.
+Position the cursor at its beginning, according to the current mode.
+With a prefix ARG open line above the current line."
+  (interactive "P")
+  (if arg
+      (prelude-smart-open-line-above)
+    (progn
+      (move-end-of-line nil)
+      (newline-and-indent))))
+
+(defun prelude-smart-open-line-above ()
+  "Insert an empty line above the current line.
+Position the cursor at it's beginning, according to the current mode."
+  (interactive)
+  (move-beginning-of-line nil)
+  (newline-and-indent)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+(global-set-key (kbd "C-o") 'prelude-smart-open-line)
+(global-set-key (kbd "M-o") 'open-line)
+
+(windmove-default-keybindings)
+
+(provide 'setup-convenience)
