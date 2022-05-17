@@ -21,7 +21,7 @@
   )
 
 ;;
-(setq org-directory "~/work/repo/krepo/")
+(setq org-directory "~/work/krepo/")
 ;; org-default-notes-file used for capture
 ;; (setq org-default-notes-file (concat org-directory "projects.org"))
 (setq org-default-notes-file (concat org-directory ".notes"))
@@ -90,7 +90,7 @@
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory "~/work/repo/krepo/knowledge")
+  (org-roam-directory "~/work/krepo/knowledge")
   (org-roam-completion-everywhere t)
   (org-roam-capture-templates
    '(("d" "default" plain
@@ -107,12 +107,12 @@
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
-         :map org-roam-dailies-map
-         ("Y" . org-roam-dailies-capture-yesterday)
-         ("T" . org-roam-dailies-capture-tomorrow)
+;;         :map org-roam-dailies-map
+;;         ("Y" . org-roam-dailies-capture-yesterday)
+;;         ("T" . org-roam-dailies-capture-tomorrow)
          )
-  :bind-keymap
-  ("C-c n d" . org-roam-dailies-map)
+;;  :bind-keymap
+;;  ("C-c n d" . org-roam-dailies-map)
   :config
   ;; (require 'org-roam-dailies)
   ;; (require 'org-roam-node)
