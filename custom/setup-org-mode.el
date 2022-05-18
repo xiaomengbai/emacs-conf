@@ -20,8 +20,16 @@
          ("M-," . org-mark-ring-goto))
   )
 
-;;
-(setq org-directory "~/work/krepo/")
+;; krepo/
+;;  |- .notes         ;; org-capture
+;;  |- archives.org   ;; org-archive
+;;  |- knowledge/     ;; org-roam
+;;  |- org-ref/       ;; bibtex & papers
+;;      |- refs.bib   ;; references
+;;      |- pdfs/      ;; papers (planned)
+;;      |- notes/     ;; notes (planned)
+
+(setq org-directory "~/work/repo/krepo/")
 ;; org-default-notes-file used for capture
 ;; (setq org-default-notes-file (concat org-directory "projects.org"))
 (setq org-default-notes-file (concat org-directory ".notes"))
@@ -90,7 +98,7 @@
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory "~/work/krepo/knowledge")
+  (org-roam-directory (concat org-directory "knowledge"))
   (org-roam-completion-everywhere t)
   (org-roam-capture-templates
    '(("d" "default" plain
@@ -173,12 +181,11 @@
 
 ;; org-ref
 
-
 (use-package org-ref
   :config
-  (setq bibtex-completion-bibliography '("~/work/literature/rtree.bib")
-	bibtex-completion-library-path '("~/work/literature/")
-	bibtex-completion-notes-path "~/work/literature/notes/"
+  (setq bibtex-completion-bibliography (list (concat org-directory "org-ref/refs.bib")) ;;'("~/work/literature/rtree.bib")
+	bibtex-completion-library-path (list (concat org-directory "org-ref/pdfs")) ;;'("~/work/literature/")
+	bibtex-completion-notes-path (concat org-directory "org-ref/notes")  ;;"~/work/literature/notes/"
 	bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
 
 	bibtex-completion-additional-search-fields '(keywords)
@@ -192,6 +199,7 @@
 	(lambda (fpath)
 	  (call-process "open" nil 0 nil fpath)))
   )
+(define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
 ;; (use-package ivy-bibtex
 ;;   :init
 ;;   (setq bibtex-completion-bibliography '("~/work/literature/rtree.bib"

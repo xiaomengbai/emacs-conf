@@ -18,8 +18,16 @@
   )
 
 (use-package projectile
+  :diminish projectile-mode
   :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode)
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
+  :init
+  ;; (when (file-directory-p "~/work/repo/projects/")
+  ;;   (setq projectile-project-search-path '("~/work/repo/projects/" "~/work/repo/")))
+  (setq projectile-switch-project-action #'projectile-dired)
+  ;;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   )
 
 
