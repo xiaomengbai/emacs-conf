@@ -9,6 +9,12 @@
 
 (define-key dired-mode-map (kbd "TAB") 'dired-hide-subdir)
 
+(recentf-mode 1)
+(savehist-mode 1)
+(save-place-mode 1)
+(setq use-dialog-box nil)
+(global-auto-revert-mode 1)
+
 ;; tramp
 (require 'tramp)
 (setq password-cache-expiry nil)

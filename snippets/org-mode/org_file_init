@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: org_file_init
+# key: orginit
+# --
+
+#+TITLE: ${1: `(file-name-base (buffer-file-name))`}
+#+STARTUP: overview
+#+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)
+
+$0

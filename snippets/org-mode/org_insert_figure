@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: org_insert_figure
+# key: <figure
+# --
+
+#+CAPTION: $1
+#+NAME: label:$2
+[[$0]]

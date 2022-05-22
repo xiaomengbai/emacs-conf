@@ -20,3 +20,7 @@
     (interactive)
     (erc :server "irc.libera.chat"
          :port   "6667")))
+
+;; customize the variables in another file
+(setq custom-file (locate-user-emacs-file "custom-vars.el"))
+(load custom-file 'noerror 'nomessage)
