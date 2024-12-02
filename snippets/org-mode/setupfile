@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: setupfile
+# key: setupfile
+# --
+
+#+SETUPFILE: ${1:~/work/repo/krepo/plain_latex.org}
+
+$0

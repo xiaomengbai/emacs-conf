@@ -1,5 +1,6 @@
 ;; This module setups org-mode
 
+(global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-switchb)
@@ -14,11 +15,16 @@
   :hook (org-mode . efs/org-mode-setup)
   :config
   (add-to-list 'org-file-apps '(directory . emacs))
+  ;;(add-to-list 'org-file-apps '("\\.pdf\\'" . "xdg-open %s")) ;; use evince to open the pdf file
   (add-to-list 'org-link-frame-setup '(file . find-file))
   (setq org-archive-location "archives.org::")
-  :bind (("M-." . org-open-at-point)
-         ("M-," . org-mark-ring-goto))
+;;  :bind (("M-." . org-open-at-point)
+;;         ("\C-c," . org-mark-ring-goto))
   )
+
+;; (require 'openwith)
+;; (openwith-mode t)
+;; (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
 
 ;; krepo/
 ;;  |- .notes         ;; org-capture
@@ -38,7 +44,7 @@
 ;; setup babel languages
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((lisp . t) (perl . t)))
+ '((lisp . t) (perl . t) (C . t)))
 
 (use-package vterm
   :config
@@ -74,7 +80,6 @@
 
 
 
-
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 100 ;; 120 leads to bias visual effects
         visual-fill-column-center-text t)
@@ -96,9 +101,16 @@
 
 (defun xmb/yas-org-bp ()
   (interactive)
-  (unless (or (string-match "^CAPTURE-" (buffer-name)) (and buffer-file-name (string-match "knowledge/" buffer-file-name)))
+  (unless (or (string-match "^CAPTURE-" (buffer-name)) (and buffer-file-name (or (string-match "knowledge/" buffer-file-name) (string-match "org-ref/notes/" buffer-file-name))))
       (yas-expand-snippet (yas-lookup-snippet "org_file_init" 'org-mode)))
   )
+
+(add-hook 'org-mode-hook
+          (lambda () (local-set-key (kbd "M-,") #'org-mark-ring-goto)))
+
+(add-hook 'org-mode-hook
+          (lambda () (local-set-key (kbd "M-.") #'org-open-at-point)))
+
 
 
 (use-package autoinsert
@@ -160,6 +172,19 @@
 (require 'ox-latex)
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
+               '("org-plain-latex"
+                 "\\documentclass{article}
+[NO-DEFAULT-PACKAGES]
+[PACKAGES]
+[EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
                '("acm"
                  "\\documentclass{acmart}
 \\usepackage{graphicx}
@@ -185,6 +210,8 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
+(setq org-latex-pdf-process (list "latexmk -bibtex -pdf -f %f"))
+
 ;; (defun org-export-latex-no-toc (depth)
 ;;   (when depth
 ;;     (format "%% Org-mode is exporting headings to %s levels.\n"
@@ -204,14 +231,14 @@
 
 	bibtex-completion-additional-search-fields '(keywords type journal chapter booktitle)
 	bibtex-completion-display-formats
-	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16} ${journal:40}")
-	  (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16} Chapter ${chapter:32}")
-	  (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16} ${booktitle:40}")
-	  (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16} ${booktitle:40}")
+	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16}")
+	  (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16}")
+	  (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16}")
+	  (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16}")
 	  (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${type:9} ${title:80} ${author:16}"))
 	bibtex-completion-pdf-open-function
 	(lambda (fpath)
-	  (call-process "open" nil 0 nil fpath)))
+	  (call-process "xdg-open" nil 0 nil fpath)))
   (require 'bibtex)
   (setq bibtex-autokey-year-length 4
         bibtex-autokey-name-year-separator "-"
@@ -275,6 +302,52 @@
 ;; 	      org-ref-insert-ref-function 'org-ref-insert-ref-link
 ;; 	      org-ref-cite-onclick-function (lambda (_) (org-ref-citation-hydra/body))))
 
+(setq org-latex-packages-alist '())
+;; (add-to-list 'org-latex-packages-alist '("" "cleveref" t))
+;; (add-to-list 'org-latex-packages-alist '("" "hyperref" t))
+;; (add-to-list 'org-latex-packages-alist '("" "natbib" t))
 
+;; use CUSTOM_ID in the exported latex code
+(setq org-latex-prefer-user-labels t)
+
+(use-package org-noter
+  :config
+  (add-to-list 'org-noter-notes-search-path "~/work/repo/krepo/org-ref/notes"))
+
+(use-package org-pdftools
+  :hook (org-mode . org-pdftools-setup-link))
+
+(use-package org-noter-pdftools
+  :after org-noter
+  :config
+  ;; Add a function to ensure precise note is inserted
+  (defun org-noter-pdftools-insert-precise-note (&optional toggle-no-questions)
+    (interactive "P")
+    (org-noter--with-valid-session
+     (let ((org-noter-insert-note-no-questions (if toggle-no-questions
+                                                   (not org-noter-insert-note-no-questions)
+                                                 org-noter-insert-note-no-questions))
+           (org-pdftools-use-isearch-link t)
+           (org-pdftools-use-freepointer-annot t))
+       (org-noter-insert-note (org-noter--get-precise-info)))))
+
+  ;; fix https://github.com/weirdNox/org-noter/pull/93/commits/f8349ae7575e599f375de1be6be2d0d5de4e6cbf
+  (defun org-noter-set-start-location (&optional arg)
+    "When opening a session with this document, go to the current location.
+With a prefix ARG, remove start location."
+    (interactive "P")
+    (org-noter--with-valid-session
+     (let ((inhibit-read-only t)
+           (ast (org-noter--parse-root))
+           (location (org-noter--doc-approx-location (when (called-interactively-p 'any) 'interactive))))
+       (with-current-buffer (org-noter--session-notes-buffer session)
+         (org-with-wide-buffer
+          (goto-char (org-element-property :begin ast))
+          (if arg
+              (org-entry-delete nil org-noter-property-note-location)
+            (org-entry-put nil org-noter-property-note-location
+                           (org-noter--pretty-print-location location))))))))
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
 (provide 'setup-org-mode)

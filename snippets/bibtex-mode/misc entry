@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: misc entry
+# key: \misc
+# --
+
+@misc{$4,
+    author = "{$1}",
+  title  = "{$2}",
+  year   = {$3},
+  note   = "Accessed on `(format-time-string "%B %d, %Y")`",
+  howpublished = "\url{$0}"
+}
+
+
+

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: figure in org
+# key: _figure
+# --
+
+#+CAPTION: $1
+#+NAME: fig:$2
+[[./figures/$2.{$3:png}]]
+
+$0

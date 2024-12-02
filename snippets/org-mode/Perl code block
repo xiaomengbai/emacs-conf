@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Perl code block
+# key: <perl
+# --
+#+BEGIN_SRC perl :results output
+use strict;
+use warnings;
+use 5.018;
+
+$0
+
+#+END_SRC

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: red color with leftarrow
+# key: reda
+# --
+
+{\color{red} $\leftarrow$ $1}$0

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: bibliography
+# key: bibliography
+# --
+
+\bibliographystyle{${1:plain}}
+\bibliography{${2:work/repo/krepo/org-ref/refs}}
+$0

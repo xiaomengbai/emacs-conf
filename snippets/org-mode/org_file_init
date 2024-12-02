@@ -3,8 +3,10 @@
 # key: orginit
 # --
 
-#+TITLE: ${1: `(file-name-base (buffer-file-name))`}
+#+TITLE: $1
+#+AUTHOR: ${2:Mengbai Xiao}
 #+STARTUP: overview
-#+TODO: TODO(t) WAIT(w@/!) | DONE(d!) CANCELED(c@)
+#+TODO: TODO(t) NEXT(n) WAIT(w@/!) | DONE(d!) CANCELED(c@)
+#+CATEGORY: $3
 
 $0

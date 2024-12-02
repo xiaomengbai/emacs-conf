@@ -33,7 +33,8 @@
 (use-package doom-themes
   :config
   ;;(load-theme 'doom-oceanic-next t)
-  (load-theme 'doom-solarized-dark t)
+  ;;(load-theme 'doom-solarized-dark t)
+  (load-theme 'doom-peacock t)
   (doom-themes-org-config) ;; unknown options
   )
 

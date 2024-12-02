@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: time_slot_bullet
+# key: ts0
+# --
+
+- [${1:08}:${2:00}-${3:08}:${4:00}]
+  $0

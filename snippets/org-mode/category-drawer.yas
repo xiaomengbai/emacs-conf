@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: category drawer
+# key: cate
+# --
+
+:PROPERTIES:
+:CATEGORY: $1
+:END:
+$0

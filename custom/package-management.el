@@ -3,10 +3,10 @@
 (require 'package)
 (setq package-archives '(
                          ;;("melpa" . "https://melpa.org/packages/")
-                         ;;("melpa" . "https://elpa.zilongshanren.com/melpa/")
-			 ;;("org" . "https://orgmode.org/elpa/")
-                         ;;("org" . "https://elpa.zilongshanren.com/org/")
+                         ;;("org" . "https://orgmode.org/elpa/")
                          ;;("gnu" . "https://elpa.gnu.org/packages/")
+                         ;;("melpa" . "https://elpa.zilongshanren.com/melpa/")
+			 ;;("org" . "https://elpa.zilongshanren.com/org/")
                          ;;("gnu" . "https://mirror.iscas.ac.cn/elpa/")
                          ;;("gnu" . "https://elpa.zilongshanren.com/gnu/")
                          ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")

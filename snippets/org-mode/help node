@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: help node
+# key: [[help
+# --
+[[help:$1][$1]]$0

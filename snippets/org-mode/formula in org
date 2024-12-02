@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: formula in org
+# key: \fml
+# --
+$$1$$0
