@@ -10,6 +10,13 @@ transient/
 url/
 projectile-bookmarks.eld
 recentf
+myinit.el
+_myinit.el
+.cache/
+cnfonts/
+custom-vars.el
+eln-cache/
+pyim/
 
 org-roam.db
 .org-id-locations
