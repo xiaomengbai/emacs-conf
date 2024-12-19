@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: reimbursement1
+# key: reimbursement1
+# --
+
+* TODO [${1:item}][${2:fee}] 小额报账投递                                  :reimbursement:
+- [ ] 准备票据
+- [ ] 填写系统、打印材料并签字
+- [ ] 盖章并投递
