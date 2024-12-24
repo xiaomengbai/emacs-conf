@@ -1162,7 +1162,7 @@ use wslview to directly open files in windows
           '(("d" "default" entry
              "* %?"
              :target (file+head "%<%Y-%m-%d>.org"
-                                "#+title: %<%Y-%m-%d>\n#+filetags: :dailies:not-reviewed:\n"
+                                "#+title: %<%Y-%m-%d>\n#+category: dailies\n#+filetags: :not-reviewed:\n"
                                 ))))
     ;; (require 'org-roam-protocol)
     )
@@ -1340,7 +1340,7 @@ With a prefix ARG, remove start location."
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
-* COMMENT mu4e
+* mu4e
 check [[id:e0a71ac3-becd-4383-8a4e-3e2538cd9491][mu4e]] for understanding how to install prerequisites
 #+BEGIN_SRC elisp
   ;; Add mu4e to the load-path:
@@ -1487,7 +1487,7 @@ Currently, I use 文泉等宽微米黑, which should be downloaded and installed
              (set-fontset-font t 'unicode (font-spec :family "Weather Icons") nil 'append)))
 
   :custom
-  (cnfonts-personal-fontnames '(("Arial" "PragmataPro Mono Liga" "Go Mono" "Fira Code" "Ubuntu Mono")
+  (cnfonts-personal-fontnames '(("JetBrainsMono-2.304" "Arial" "PragmataPro Mono Liga" "Go Mono" "Fira Code" "Ubuntu Mono")
                                 ("M 盈黑 PRC W5" "方正聚珍新仿简繁" "苹方 常规" "微软雅黑" "苹方 中等" "M 盈黑 PRC W4" "PragmataPro Mono Liga")
                                 ("Simsun-ExtB" "方正聚珍新仿简繁" "PragmataPro Mono Liga")
                                 ("Segoe UI Symbol" "PragmataPro Mono Liga")))

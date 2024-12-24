@@ -25,3 +25,5 @@ projects
 history
 places
 .emacs.desktop*
+.mbsyncpass.gpg
+librime/
