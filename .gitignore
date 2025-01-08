@@ -25,3 +25,4 @@ projects
 history
 places
 .emacs.desktop*
+org-persist/
