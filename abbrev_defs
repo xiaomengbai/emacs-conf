@@ -1,4 +1,10 @@
 ;;-*-coding: utf-8;-*-
+(define-abbrev-table 'LaTeX-mode-abbrev-table
+  '(
+    ("fa" "FlashAttention" nil :count 2)
+    ("sa" "self-attention" nil :count 2)
+   ))
+
 (define-abbrev-table 'global-abbrev-table
   '(
     ("adn" "and" nil :count 1)
